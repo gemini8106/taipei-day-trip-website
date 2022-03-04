@@ -64,7 +64,7 @@ def attractions():
 				"mrt": attraction[6],
 				"latitude": attraction[7],
 				"longitude": attraction[8],
-				"images": attraction[9]
+				"images": attraction[9].split(",")
 			}
 			attraction_list.append(information)
 		if len(attractions)> 12 and len(attractions)- end_number<0:
