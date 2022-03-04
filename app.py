@@ -100,7 +100,7 @@ def attractions():
 				"mrt": page_attraction[6],
 				"latitude": page_attraction[7],
 				"longitude": page_attraction[8],
-				"images": page_attraction[9]
+				"images": page_attraction[9].split(",")
 			}
 			page_attraction_list.append(information)
 
@@ -138,7 +138,7 @@ def attraction(variable):
 			"mrt": scenery[6],
 			"latitude": scenery[7],
 			"longitude": scenery[8],
-			"images": scenery[9]
+			"images": scenery[9].split(",")
 
 		}})
   elif scenery== None:
