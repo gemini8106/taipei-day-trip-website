@@ -9,7 +9,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 app.config["JSON_SORT_KEYS"]= False
 
-app.debug= True
+app.debug= False
 
 travel_db= mysql.connector.connect(
   host= "localhost",
