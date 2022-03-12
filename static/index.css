@@ -4,16 +4,18 @@ body{
   
 }
 #navbarContainer{
+  background-color: white;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .navbar{
   background: white;
   padding-top: 10px;
   display: flex;
   justify-content: center;
-  position: fixed;
-  top: 0;
   width: 100%;
 }
 .left{
