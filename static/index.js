@@ -2,7 +2,7 @@
 let searchButton= document.getElementById("searchButton");
 let input= document.getElementById("inputKeyword");
 let priviousKeyword= '';
-
+let isLoading= false;
 searchButton.addEventListener("click", queryKeyword)
 
 function queryKeyword(){
@@ -10,20 +10,24 @@ function queryKeyword(){
   if (keyword!= "" && priviousKeyword!= keyword){
     document.getElementsByClassName("attractionsContainer")[0].innerHTML= "";
     priviousKeyword= keyword;
-    console.log(priviousKeyword)
-    console.log(keyword)
-    getKeyword(0, keyword)
+    // console.log(priviousKeyword)
+    // console.log(keyword)
+    if(!isLoading){
+      getKeyword(0, keyword);
+    }
   } else if(keyword!= "" && priviousKeyword== keyword){
     return false;
   }
 }
 
 function getKeyword(page, keyword){
+  isLoading= true;
     fetch(`/api/attractions?page=${page}&keyword=${keyword}`)
     .then(response=> response.json())
     .then(data=> {
       let source= data.data
       let nextPage= data.nextpage
+      isLoading= false;
       if (source== null&& nextPage== null){
         document.getElementsByClassName("attractionsContainer")[0].innerHTML="查無景點";
       }
@@ -44,10 +48,11 @@ function getKeyword(page, keyword){
           let mrt= source[i].mrt;
           let category= source[i].category;
           addattractions(image, name, mrt, category);
-        } window.onscroll= function() {
+        } 
+          window.onscroll= function() {
           let scrollable= document.documentElement.scrollHeight - window.innerHeight;
-          let scrolled= window.scrollY;
-          if(scrollable=== Math.floor(scrolled)){ 
+          let scrolled= window.scrollY+ 50;
+          if(Math.floor(scrolled)> scrollable && isLoading== false){ 
             getKeyword(nextPage, keyword);
            }
           }
@@ -64,6 +69,7 @@ function getKeyword(page, keyword){
 
 
 function getData(page){
+  isLoading = true;
   fetch(`/api/attractions?page=${page}`)
     .then(response=> response.json())
     .then(data=>{
@@ -75,12 +81,13 @@ function getData(page){
         let mrt= source[i].mrt;
         let category= source[i].category;
         addattractions(image, name, mrt, category);
+        isLoading = false;
       }
       if(nextPage) {
         window.onscroll= function() {
           let scrollable= document.documentElement.scrollHeight - window.innerHeight;
-          let scrolled= window.scrollY;
-          if(scrollable=== Math.floor(scrolled)){
+          let scrolled= window.scrollY+ 50;
+          if(Math.floor(scrolled)> scrollable && isLoading== false){
             getData(nextPage);
           }
         }
@@ -89,7 +96,7 @@ function getData(page){
       }
       // window.addEventListener("scroll",()=>{
       //   let scrollable= document.documentElement.scrollHeight - window.innerHeight;
-      //   let scrolled= window.scrollY;
+      //   let scrolled= window.scrollY+ 50;
       //   console.log(scrollable);
       //   console.log(Math.floor(scrolled));
       // })
@@ -131,7 +138,11 @@ function addattractions(image, name, mrt, category){
     addBox.appendChild(addInformation);
   }
 
-window.addEventListener("load", getData(0))
+window.addEventListener("load", () => {
+  if(!isLoading) {
+    getData(0);
+  }
+})
 
 
 
