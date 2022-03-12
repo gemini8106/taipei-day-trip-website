@@ -24,7 +24,7 @@ for attraction in attraction_list:
   for url_1 in url:
     if "jpg" in url_1 or "png" in url_1:
       url_list.append(url_1)
-  url_list= ",".join(url_list)              #將list轉為字串型態
+  url_list= ",".join(url_list)              #使用join將list轉為string並在網址間加上",""
   cursor.execute("INSERT INTO attractions(id, images) VALUES(%s, %s) ON DUPLICATE KEY UPDATE images= %s;",(id, url_list, url_list))   #insert 跟 where不可一起使用，需用此方法，可查stack overflow
   
 travel_db.commit()

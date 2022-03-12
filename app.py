@@ -7,7 +7,7 @@ app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-app.config["JSON_SORT_KEYS"]= False
+app.config["JSON_SORT_KEYS"]= False    #讓json不會依字母排列
 
 app.debug= False
 
@@ -49,40 +49,49 @@ def attractions():
 	cursor= travel_db.cursor()
  
 	if keyword:
-		cursor.execute("SELECT * FROM attractions WHERE name LIKE concat('%',%s,'%')",(keyword,))
+		cursor.execute("SELECT * FROM attractions WHERE name LIKE concat('%', %s,'%') LIMIT %s,13 ",(keyword, start_number))
 		attractions= cursor.fetchall()
-
-		attraction_list= []
-		for attraction in attractions:
-			information= {
-				"id": attraction[0],
-				"name": attraction[1],
-				"category": attraction[2],
-				"description": attraction[3],
-				"address": attraction[4],
-				"transport":attraction[5],
-				"mrt": attraction[6],
-				"latitude": attraction[7],
-				"longitude": attraction[8],
-				"images": attraction[9].split(",")
-			}
-			attraction_list.append(information)
-		if len(attractions)> 12 and len(attractions)- end_number<0:
-			return	jsonify({"nextpage":None,
-										"data":attraction_list[start_number: end_number]})
-		elif len(attractions)> 12 and len(attractions)- end_number>0:
-			return	jsonify({"nextpage":int(page)+1,
-										"data":attraction_list[start_number: end_number]})
-		elif len(attractions)<= 12:
+		if not attractions:
 			return jsonify({"nextpage":None,
-										"data":attraction_list[start_number: end_number]})
-		else:
-			return make_response(jsonify({"error": True, 
-										"message": "伺服器內部錯誤"}), 500)
+										"data":None})
+		elif attractions:
+			attraction_list= []
+			for attraction in attractions:
+				information= {
+					"id": attraction[0],
+					"name": attraction[1],
+					"category": attraction[2],
+					"description": attraction[3],
+					"address": attraction[4],
+					"transport":attraction[5],
+					"mrt": attraction[6],
+					"latitude": attraction[7],
+					"longitude": attraction[8],
+					"images": attraction[9].split(",")					#取到的值為字串形式，用split在"，"切開，切開後自動轉為list
+				}
+				attraction_list.append(information)
+			#抓到>12筆資料且總資料量減掉尾數<0代表最末頁，次頁顯示為none
+			if len(attractions)> 12 and len(attractions)- end_number<0:       
+				return	jsonify({"nextpage":None,
+											"data":attraction_list[start_number: end_number]})
+		
+			#抓到>12筆資料且總資料量減掉尾數>0代表有次頁
+			elif len(attractions)> 12 and len(attractions)- end_number>0:
+				return	jsonify({"nextpage":int(page)+1,
+											"data":attraction_list[start_number: end_number]})
+			elif len(attractions)<= 12:
+				return jsonify({"nextpage":None,
+											"data":attraction_list})
+			else:
+				return make_response(jsonify({"error": True, 
+											"message": "伺服器內部錯誤"}), 500)
 	else:
+		#沒有keyword的情況，一頁以limit取12筆資料
 		cursor.execute("SELECT * FROM attractions LIMIT %s,12 ",(start_number,))
 		page_attractions= cursor.fetchall()
 		# print(page_attractions[11][0])
+	
+		#取資料庫id總數
 		cursor.execute("SELECT count(*) FROM attractions WHERE id")
 		total_number= cursor.fetchone()[0]
 		cursor.close()
@@ -104,10 +113,12 @@ def attractions():
 			}
 			page_attraction_list.append(information)
 
-		
+		#如果取到12筆且總數不為12倍數，表示有下一頁
 		if len(page_attractions)== 12 and total_number/12 != 0:
 			return jsonify({"nextpage":int(page)+1,
 										"data":page_attraction_list})
+	
+		#如果取到12筆且最後一筆id=id總數，表示沒有下一頁
 		elif len(page_attractions)== 12 and page_attractions[11][0]== total_number:
 			return jsonify({"nextpage":None,
 										"data":page_attraction_list})
