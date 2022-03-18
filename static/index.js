@@ -4,6 +4,11 @@ let input= document.getElementById("inputKeyword");
 let priviousKeyword= '';
 let isLoading= false;
 searchButton.addEventListener("click", queryKeyword)
+input.addEventListener("keypress",(e)=> {
+  if (e.key=== "Enter"){
+    queryKeyword()
+  }
+})
 
 function queryKeyword(){
   let keyword= input.value;
@@ -37,7 +42,8 @@ function getKeyword(page, keyword){
           let name= source[i].name;
           let mrt= source[i].mrt;
           let category= source[i].category;
-          addattractions(image, name, mrt, category);
+          let id= source[i].id;
+          addattractions(image, name, mrt, category, id);
         }
         window.onscroll = () => false;
       }
@@ -47,7 +53,8 @@ function getKeyword(page, keyword){
           let name= source[i].name;
           let mrt= source[i].mrt;
           let category= source[i].category;
-          addattractions(image, name, mrt, category);
+          let id= source[i].id;
+          addattractions(image, name, mrt, category, id);
         } 
           window.onscroll= function() {
           let scrollable= document.documentElement.scrollHeight - window.innerHeight;
@@ -58,6 +65,7 @@ function getKeyword(page, keyword){
           }
       }
     })
+    .catch(error=> console.log(error))
   
 }
   
@@ -80,7 +88,8 @@ function getData(page){
         let name= source[i].name;
         let mrt= source[i].mrt;
         let category= source[i].category;
-        addattractions(image, name, mrt, category);
+        let id= source[i].id;
+        addattractions(image, name, mrt, category, id);
         isLoading = false;
       }
       if(nextPage) {
@@ -104,11 +113,12 @@ function getData(page){
     .catch(error=> console.log(error))
 }
 
-function addattractions(image, name, mrt, category){
+function addattractions(image, name, mrt, category, id){
   
     let addBox= document.createElement("div");
     addBox.className= "attractionBox";
     document.getElementsByClassName("attractionsContainer")[0].appendChild(addBox);
+    addBox.onclick= function(){window.location= `/attraction/${id}`}
 
     let addImage= document.createElement("img");
     addImage.className= "attractionImage";

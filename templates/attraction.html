@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename= 'attraction.css') }}" />
+</head>
+<body>
+  <div id= "navbar_container">
+    <nav class="navbar">
+      <div class= "left">台北一日遊</div>
+      <div class= "right">
+        <div class= "webFunction">預定行程</div>
+        <div class= "webFunction">登入/註冊</div>
+      </div>
+    </nav>
+  </div>
+  <div class= "outside_container">
+    <div class= "back_container">
+      <div class= "attractions_container">
+        <div class= "attraction_image">
+          <div class= "arrow_button_container">
+            <img src= "../static/btn_leftArrow.png" id= "arrow_button_left">
+            <img src= "../static/btn_rightArrow.png" id= "arrow_button_right">
+          </div>
+        </div>
+      </div>
+      <div class= "book_container">
+        <div class= "attraction_information_container"></div>
+        <div class= "book_trip_container">
+          <p class= "book_information1">訂購導覽行程</p>
+          <p class= "book_information2">以此景點為中心的一日行程，帶您探索城市角落故事</p>
+          <div class= "book_date_container">
+            <p class= "book_date1">選擇日期：</p>
+            <input type= "date"></input>
+          </div>
+          <div class= "book_time_container">
+            <p class= "book_time">選擇時間：</p>
+            <div class= "circle1"><div class= "circle2"></div></div>
+            <label >上半天</label>     
+            <div class= "circle3"><div class= "circle4"></div></div>
+            <label >下半天</label>       
+          </div>
+          <div class= "book_money_container">
+            <p class= "book_money">導覽費用：
+              <div class= "money"> 新台幣2000元</div>
+            </p>
+          </div>
+          <button id= "book_button">開始預定行程</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class= "attraction_detail_container">
+    <div class= "attraction_detail">
+      <div class= "attraction_description"></div>
+      <div class= "attraction_address_title">景點地址：</div>
+      <div id= "attraction_address"></div>
+      
+      <div class= "attraction_transport_title">交通方式：</div>
+      <div id= "attraction_transport"></div>
+    </div>
+  </div>
+  <div class= "footerContainer">
+    <footer class= "footer">COPYRIGHT © 2021 台北一日遊</footer>
+  </div>
+  
+<script src= "{{ url_for("static", filename= "attraction.js") }}"  type= "text/javascript"></script>
+
+</body>
+</html>
