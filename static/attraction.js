@@ -25,7 +25,7 @@ function addAttraction(){
   //包mrt & category
   let addInformation = document.createElement("div");
   addInformation.className = "attraction_information";
-  addInformation.innerHTML = data.category + "at" + data.mrt;
+  addInformation.innerHTML = data.category + " at " + data.mrt;
   document.getElementsByClassName("attraction_information_container")[0].appendChild(addInformation)
   //mrt
 
@@ -57,12 +57,12 @@ async function init() {
 
 function frontPage(){
   let maxIndex = data.images.length - 1;
-  if (currentIndex == 0){
-    currentIndex = maxIndex;
+  if (currentIndex > 0){
+    currentIndex -= 1;
     document.getElementsByClassName("attraction_image")[0].style.backgroundImage = `url(${data.images[currentIndex]})`;
     currentDot();
-  }else if(currentIndex > 0 && currentIndex <= maxIndex){
-    currentIndex -= 1;
+  }else {
+    currentIndex = maxIndex;
     document.getElementsByClassName("attraction_image")[0].style.backgroundImage = `url(${data.images[currentIndex]})`;
     currentDot();
   }
@@ -70,11 +70,11 @@ function frontPage(){
 
 function nextPage(){
   let maxIndex= data.images.length - 1;
-  if(currentIndex >= 0 && currentIndex < maxIndex){
+  if (currentIndex >= 0 && currentIndex < maxIndex){
     currentIndex += 1;
     document.getElementsByClassName("attraction_image")[0].style.backgroundImage = `url(${data.images[currentIndex]})`;
     currentDot();
-  }else if (currentIndex = maxIndex){
+  }else {
     currentIndex = 0; 
     document.getElementsByClassName("attraction_image")[0].style.backgroundImage = `url(${data.images[currentIndex]})`;
     currentDot();

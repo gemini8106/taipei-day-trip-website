@@ -199,12 +199,17 @@ body{
   color: white;
   background: #448899;
   font-size: 19px;
+  border: 0;
+  border-radius: 5px;
 }
 hr{
   margin: 45px 0px 45px 0px;
 }
 .attraction_detail{
   margin: 0px 10px 0px 20px;
+}
+.attraction_description{
+  line-height: 23px;
 }
 .attraction_detail > .attraction_address_title{
   font-weight: bold;
@@ -217,6 +222,7 @@ hr{
 }
 .attraction_detail > #attraction_transport{
   margin-bottom: 110px;
+  line-height: 23px;
 }
 .footerContainer{
   display: flex;
