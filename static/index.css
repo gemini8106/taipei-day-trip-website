@@ -12,11 +12,8 @@ body{
   width: 100%;
 }
 .navbar{
-  background: white;
   padding-top: 10px;
   display: flex;
-  justify-content: center;
-  width: 100%;
 }
 .left{
   font-weight: bold;
@@ -32,7 +29,7 @@ body{
   justify-content: end;
   color: #666666;
 }
-.right .webFunction{
+.webFunction{
   margin:  0px 10px 0px 10px;
   font-size: 16px;
 }
@@ -151,6 +148,9 @@ img{
   }
 }
 @media(max-width: 1200px){
+  .navbar{
+    width: 1200px;
+  }
   .left{
     margin-left: 15px;
   }
