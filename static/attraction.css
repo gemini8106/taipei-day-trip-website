@@ -13,7 +13,7 @@ body{
   z-index: 2000;
   top: 0;
   width: 100%;
-  border-bottom: #666666 0.5px solid;
+  border-bottom: #E8E8E8 1px solid;
 }
 .navbar{
   display: flex;
@@ -105,8 +105,6 @@ body{
 }
 
 .book_trip_container{
-  height: 260px;
-  width: 300px;
   padding: 20px;
   background: #E8E8E8;
   color: #666666;
@@ -202,8 +200,16 @@ body{
   border: 0;
   border-radius: 5px;
 }
+#hr_container{
+  display: flex;
+  justify-content: center;
+}
 hr{
   margin: 45px 0px 45px 0px;
+  background-color: #E8E8E8;
+  border: none;
+  height: 1px;
+  width: 1200px;
 }
 .attraction_detail{
   margin: 0px 10px 0px 20px;
@@ -310,6 +316,10 @@ hr{
   }  
   .attractions_container {
     padding: 94px 0px 0px 0px;
+  }
+  .outside_book_container{
+    display: flex;
+    justify-content: center;
   }
   .book_container{
     margin: 0;
