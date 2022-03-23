@@ -8,12 +8,10 @@ app=Flask(__name__,
   )
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
-
 app.config["JSON_SORT_KEYS"]= False    #讓json不會依字母排列
-
 app.debug= False
-
 app.register_blueprint(app_api)
+app.secret_key = "bvipfhqifnjvbnklhf"
 
 
 

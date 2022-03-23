@@ -10,7 +10,7 @@ body{
   display: flex;
   justify-content: center;
   position: fixed;
-  z-index: 2000;
+  z-index: 1;
   top: 0;
   width: 100%;
   border-bottom: #E8E8E8 1px solid;
@@ -36,7 +36,13 @@ body{
   margin: 10px;
   width: 53%;
 }
-.webFunction{
+#webFunction_book{
+  font-size: 16px;
+}
+#webFunction_signin{
+  font-size: 16px;
+}
+#webFunction_signout{
   font-size: 16px;
 }
 .outside_container{
@@ -67,10 +73,12 @@ body{
 .attractions_container > .attraction_image > .arrow_button_container > #arrow_button_left{
   width: 36px;
   height: 36px;
+  opacity: 0.5;
 }
 .attractions_container  > .attraction_image > .arrow_button_container > #arrow_button_right{
   width: 36px;
   height: 36px;
+  opacity: 0.5;
 }
 .attractions_container  > .attraction_image > .image_dot_container{
   width: 100%;
@@ -287,10 +295,6 @@ hr{
   .attractions_container {
     padding-left: 10px;
   }
-  .book_container{
-    margin-left: 30px;
-  }
-
   .book_trip_container{
     height: 270px;
     border-radius: 5px;
@@ -335,4 +339,133 @@ hr{
     background-position: 80%;
   }
   
+}
+
+/* 會員登入/註冊框 */
+#signin_box{
+  display: none;
+  margin: auto;
+  width: 340px;
+}
+#signup_box{
+  display: none;
+  margin: auto;
+  width: 340px;
+}
+.sign_top{
+  width: 340px;
+  height: 10px;
+  background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+  border-radius: 6px 6px 0px 0px;
+}
+.sign{
+  width: 340px;
+  background-color: white;
+  border-radius: 0px 0px 6px 6px;
+
+}
+.sign_slogan_container{
+  display: grid;
+  grid-template-columns: 1.9fr 0.1fr;
+}
+.sign_slogan{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left:100px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #666666;
+}
+.sign_slogan_container > img{
+  width: 16px;
+  height: 16px;
+  margin:17px;
+}
+.sign > input{
+  width: 292px;
+  height: 41px;
+  margin: 0px 15px 10px 15px;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 10px;
+  border: 1px solid;
+  border-color: #CCCCCC;
+  border-radius: 5px;
+}
+.sign > button{
+  width: 310px;
+  height: 47px;
+  margin: 0px 15px 10px 15px;
+  background-color: #448899;
+  border: 0;
+  border-radius: 5px;
+  color :white;
+  font-size: 19px;
+}
+#signup_message{
+  font-size: 16px;
+  color: rgb(202, 27, 27);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+#signin_message{
+  font-size: 16px;
+  color: rgb(202, 27, 27);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.a {
+  width: 100%;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+.a > button{
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+  border:0;
+  background-color: white;
+
+}
+
+#modal{
+  display: none;
+  position: fixed;
+  z-index: 2;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow:auto;
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+.close_button:hover {
+  cursor: pointer;
+}
+#backto_signup:hover{
+  cursor: pointer;
+}
+#backto_signin:hover{
+  cursor: pointer;
+}
+#signin_button:hover{
+  cursor: pointer;
+}
+#signup_button:hover{
+  cursor: pointer;
+}
+#webFunction_book:hover{
+  cursor: pointer;
+}
+#webFunction_signin:hover{
+  cursor: pointer;
+}
+#webFunction_signout:hover{
+  cursor: pointer;
 }

@@ -13,8 +13,9 @@
     <nav class="navbar">
       <div class= "left">台北一日遊</div>
       <div class= "right">
-        <div class= "webFunction">預定行程</div>
-        <div class= "webFunction">登入/註冊</div>
+        <div id= "webFunction_book">預定行程</div>
+        <div id= "webFunction_signin">登入/註冊</div>
+        <divc id= "webFunction_signout">登出系統</div>
       </div>
     </nav>
   </div>
@@ -66,6 +67,42 @@
       <div id= "attraction_address"></div>
       <div class= "attraction_transport_title">交通方式：</div>
       <div id= "attraction_transport"></div>
+    </div>
+  </div>
+  <!--會員登入/註冊框-->
+  <div id = "modal">
+    <div id = "signin_box">
+      <div class = "sign_top"></div>
+      <div class = "sign">
+        <div class = "sign_slogan_container" >
+          <p class = "sign_slogan">登入會員帳號</p>
+          <img src = "../static/icon_close.png" class = "close_button">
+        </div>
+        <input id = "signin_email" type = "email" placeholder = "輸入電子信箱">
+        <input id = "signin_password" type = "password" placeholder = "輸入密碼">
+        <button id = "signin_button">登入帳戶</button> 
+        <div id = "signin_message"></div>
+        <div class = "a">
+          <button id = "backto_signup">還沒有帳戶？點此註冊</a>
+        </div>
+      </div>
+    </div>
+    <div id = "signup_box">
+      <div class = "sign_top"></div>
+      <div class = "sign">
+        <div class = "sign_slogan_container" >
+          <p class = "sign_slogan">註冊會員帳號</p>
+          <img src = "../static/icon_close.png" class = "close_button">
+        </div>
+        <input id = "signup_name" type = "text" placeholder = "輸入姓名">
+        <input id = "signup_email" type = "email" placeholder = "輸入電子郵件">
+        <input id = "signup_password" type = "password" placeholder = "輸入密碼">
+        <button id = "signup_button">註冊新帳戶</button> 
+        <div id = "signup_message"></div>
+        <div class = "a">
+          <button id = "backto_signin">已有帳戶了？點此登入</a>
+        </div>
+      </div>
     </div>
   </div>
   <div class= "footerContainer">
