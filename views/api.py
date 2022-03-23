@@ -1,3 +1,4 @@
+from tkinter import N
 from flask import *
 app_api= Blueprint("app_api", __name__)
 from views.database import connection_pool
@@ -133,3 +134,82 @@ def attraction(variable):
   else:
     return make_response(jsonify({"error": True, 
                     "message": "伺服器內部錯誤"}), 500)
+
+
+
+
+@app_api.route("/api/user", methods = [ "POST"])
+def signup():
+  new_user_data = request.get_json()
+  name = new_user_data["name"]
+  email = new_user_data["email"]
+  password = new_user_data["password"]
+  member_db = connection_pool.get_connection()
+  cursor = member_db.cursor()
+  cursor.execute("SELECT * FROM member WHERE email= %s",(email,))      
+  check_email = cursor.fetchone()
+  cursor.close()
+  member_db.close()
+
+  if name == "" or email == "" or password == "":
+    return make_response(jsonify({"error": True, 
+                  "message":"請輸入完整資訊"}), 400)
+  elif check_email :
+    return make_response(jsonify({"error": True, 
+                  "message":"Email已經被註冊"}), 400)
+  elif name != "" or email != "" or password != "" and check_email != None :
+    member_db = connection_pool.get_connection()
+    cursor = member_db.cursor()
+    cursor.execute("INSERT INTO member(name, email, password) VALUES(%s, %s, %s)",(name, email, password,))
+    member_db.commit()
+    cursor.close()
+    member_db.close()
+    return make_response(jsonify({"ok":True}), 200)
+  else:
+    return make_response(jsonify({"error": True, 
+                  "message": "伺服器內部錯誤"}), 500)
+      
+
+@app_api.route("/api/user", methods = ["PATCH"])
+def signin():
+  user_data = request.get_json()
+  email = user_data["email"]
+  password = user_data["password"]
+  member_db = connection_pool.get_connection()
+  cursor= member_db.cursor()
+  cursor.execute("SELECT * FROM member WHERE email= %s AND password= %s",(email, password,))
+  checkUser = cursor.fetchone()
+  cursor.close()
+  member_db.close()
+  if checkUser:
+    session["id"] = checkUser[0]
+    session["name"] = checkUser[1]
+    session["email"] = checkUser[2]
+    return make_response(jsonify({"ok":True}), 200)
+  elif checkUser == None:
+    return make_response(jsonify({"error": True, 
+                  "message":"帳號或密碼輸入錯誤"}), 400)
+  else:
+    return make_response(jsonify({"error": True, 
+                  "message": "伺服器內部錯誤"}), 500)
+
+
+@app_api.route("/api/user", methods= ["GET"])
+def is_member():
+  if "email" in session:
+    return make_response(jsonify({
+      "data" : {"id" : session["id"], 
+                "name" : session["name"], 
+                "email" : session["email"]}}), 200)
+  else:
+    return make_response(jsonify({"data":None}))
+  
+@app_api.route("/api/user", methods= ["DELETE"])
+def signout():
+  session.pop("id", None)
+  session.pop("name",None)      
+  session.pop("email",None)
+  return make_response(jsonify({"ok":True}))
+
+    
+    
