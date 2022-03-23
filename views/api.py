@@ -1,4 +1,3 @@
-from tkinter import N
 from flask import *
 app_api= Blueprint("app_api", __name__)
 from views.database import connection_pool
