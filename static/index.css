@@ -265,6 +265,7 @@ img{
   padding-left: 10px;
   border: 1px solid;
   border-color: #CCCCCC;
+  border-radius: 5px;
 }
 .sign > button{
   width: 310px;
