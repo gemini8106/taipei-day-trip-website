@@ -1,3 +1,4 @@
+from operator import truediv
 from flask import *
 app_api= Blueprint("app_api", __name__)
 from views.database import connection_pool
@@ -61,8 +62,11 @@ def attractions():
     #沒有keyword的情況，一頁以limit取12筆資料
     cursor.execute("SELECT * FROM attractions LIMIT %s,12 ",(start_number,))
     page_attractions= cursor.fetchall()
+    cursor.close()
+    travel_db.close()
     # print(page_attractions[11][0])
-	
+    travel_db= connection_pool.get_connection()
+    cursor= travel_db.cursor()
 		#取資料庫id總數
     cursor.execute("SELECT count(*) FROM attractions WHERE id")
     total_number= cursor.fetchone()[0]
@@ -125,7 +129,6 @@ def attraction(variable):
 			"latitude": scenery[7],
 			"longitude": scenery[8],
 			"images": scenery[9].split(",")
-
 		}})
   elif scenery== None:
     return make_response(jsonify({"error": True, 
@@ -149,7 +152,6 @@ def signup():
   check_email = cursor.fetchone()
   cursor.close()
   member_db.close()
-
   if name == "" or email == "" or password == "":
     return make_response(jsonify({"error": True, 
                   "message":"請輸入完整資訊"}), 400)
@@ -184,12 +186,12 @@ def signin():
     session["id"] = checkUser[0]
     session["name"] = checkUser[1]
     session["email"] = checkUser[2]
-    return make_response(jsonify({"ok":True}), 200)
+    return make_response(jsonify({"ok" : True}), 200)
   elif checkUser == None:
-    return make_response(jsonify({"error": True, 
+    return make_response(jsonify({"error" : True, 
                   "message":"帳號或密碼輸入錯誤"}), 400)
   else:
-    return make_response(jsonify({"error": True, 
+    return make_response(jsonify({"error" : True, 
                   "message": "伺服器內部錯誤"}), 500)
 
 
@@ -201,14 +203,93 @@ def is_member():
                 "name" : session["name"], 
                 "email" : session["email"]}}), 200)
   else:
-    return make_response(jsonify({"data":None}))
+    return make_response(jsonify({"data": None}))
   
 @app_api.route("/api/user", methods= ["DELETE"])
 def signout():
   session.pop("id", None)
   session.pop("name",None)      
   session.pop("email",None)
-  return make_response(jsonify({"ok":True}))
+  return make_response(jsonify({"ok" : True}))
 
-    
-    
+
+#booking api   
+@app_api.route("/api/booking" , methods = ["POST"])
+def new_booking() :
+  name = session["name"]
+  email = session["email"]
+  new_booking_data = request.get_json()
+  attractionId = new_booking_data["attractionId"]
+  date = new_booking_data["date"]
+  time = new_booking_data["time"]
+  price = new_booking_data["price"]
+  if "email" in session:
+    booking_db = connection_pool.get_connection()
+    cursor = booking_db.cursor()
+    cursor.execute("INSERT INTO booking(name , email , attractionId , date , time , price) VALUES(%s , %s , %s , %s , %s , %s)",(name , email , attractionId , date , time , price))
+    booking_db.commit()
+    cursor.close()
+    booking_db.close()
+    return make_response(jsonify({"ok" : True}), 200)
+  elif "email" not in session:
+    return make_response(jsonify({"error" : True
+                                  ,"message" : "使用者未登入"}), 403)
+  elif new_booking_data == None:
+    return make_response(jsonify({"error" : True
+                                  ,"message" : "輸入錯誤"}), 400)
+  else:
+    return make_response(jsonify({"error" : True
+                                  ,"message" : "伺服器內部錯誤"}), 500)
+
+@app_api.route("/api/booking" , methods = ["GET"])
+def booking() :
+  
+  if "email" not in session:
+    return make_response(jsonify({"error" : True
+                                  ,"message" : "使用者未登入"}), 403)
+  else :
+    booking_db = connection_pool.get_connection()
+    cursor = booking_db.cursor()
+    cursor.execute("SELECT * FROM booking WHERE email = %s", (session["email"],))
+    check_attractionId = cursor.fetchone()
+    cursor.close()
+    booking_db.close()
+    if check_attractionId == None :
+      return make_response(jsonify({
+        "data" : None}))
+    else :
+      attractionId = check_attractionId[3]
+      booking_db = connection_pool.get_connection()
+      cursor = booking_db.cursor()
+      cursor.execute("SELECT * FROM attractions WHERE id = %s", (attractionId,))
+      check_attraction = cursor.fetchone()
+      cursor.close()
+      booking_db.close()
+      return make_response(jsonify({
+      "data": {
+        "attraction": {
+          "id": check_attraction[0],
+          "name": check_attraction[1],
+          "address": check_attraction[4],
+          "image": check_attraction[9].split(",")[0]
+        },
+        "date": check_attractionId[4],
+        "time": check_attractionId[5],
+        "price": check_attractionId[6]
+      }
+      }), 200)
+
+@app_api.route("/api/booking" , methods = ["DELETE"])
+def delete() :
+  if "email" not in session:
+    return make_response(jsonify({"error" : True
+                                ,"message" : "使用者未登入"}), 403)
+  else :
+    booking_db = connection_pool.get_connection()
+    cursor = booking_db.cursor()
+    cursor.execute("DELETE FROM booking WHERE email = %s", (session["email"],))
+    booking_db.commit()
+    cursor.close()
+    booking_db.close()
+    return make_response(jsonify({"ok" : True}))
+ 
