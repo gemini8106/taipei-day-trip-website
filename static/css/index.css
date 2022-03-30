@@ -49,6 +49,9 @@ input{
   background: url(../images/icon_search.png)center no-repeat, #448899;
   border-radius: 0px 5px 5px 0px;
 }
+#searchButton:hover{
+  cursor: pointer;
+}
 .attractionsContainer{
   display: flex;
   flex-wrap: wrap;                    /*使下一項目排序若超過容器寬度則自動換行*/
@@ -62,6 +65,11 @@ input{
   border: 1px solid #E8E8E8;
   border-radius: 5px;
   margin: 10px;
+}
+.attractionBox:hover{
+  transition: 0.25s;
+  transform: scale(1.05);
+  cursor: pointer;
 }
 img{
   width: 268px;                     /*將圖片寬度固定*/

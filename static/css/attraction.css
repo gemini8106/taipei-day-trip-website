@@ -39,13 +39,13 @@ body{
   display: flex;
   justify-content: center;
 }
-.outside_container > .back_container{
+.back_container{
   width: 1200px;
 }
-.outside_container > .back_container > .attractions_container {
+.attractions_container {
   padding-top: 94px;
 }
-.outside_container > .back_container > .attractions_container.attractions_container > .attraction_image{
+.attraction_image{
   background: no-repeat ;
   background-size: cover;
   display: flex;
@@ -54,29 +54,29 @@ body{
   align-items: center;
   position: relative;
 }
-.attractions_container  > .attraction_image > .arrow_button_container{
+.arrow_button_container{
   width: 95%;
   display: flex;
   justify-content: space-between;
 }
-.attractions_container > .attraction_image > .arrow_button_container > #arrow_button_left{
+#arrow_button_left , #arrow_button_right{
   width: 36px;
   height: 36px;
   opacity: 0.5;
 }
-.attractions_container  > .attraction_image > .arrow_button_container > #arrow_button_right{
-  width: 36px;
-  height: 36px;
-  opacity: 0.5;
+#arrow_button_left:hover , #arrow_button_right:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.1s;
 }
-.attractions_container  > .attraction_image > .image_dot_container{
+.image_dot_container{
   width: 100%;
   display: flex;
   justify-content: center;
   position: absolute;
   bottom: 10px;
 }
-.attractions_container  > .attraction_image > .image_dot_container > .dot{
+.dot{
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -86,18 +86,18 @@ body{
   justify-content: center;
   margin: 6px;
 }
-.attractions_container  > .attraction_image > .image_dot_container > .dot > #black_dot{
+#black_dot{
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: black;
 }
-.attraction_information_container > .attraction_name{
+.attraction_name{
   margin: 20px 0px 15px 10px;
   font-size: 24px;
   font-weight: bold;
 }
-.attraction_information_container > .attraction_information{
+.attraction_information{
   margin: 0px 0px 15px 10px;
 }
 
@@ -108,42 +108,43 @@ body{
 
   margin: 10px;
 }
-.book_trip_container > .attraction_information_container > .attraction_name{
+.attraction_name{
   margin: 20px 0px 15px 10px;
   font-size: 24px;
   font-weight: bold;
 }
-.book_trip_container > .attraction_information_container > .attraction_information{
+.attraction_information{
   margin: 0px 0px 15px 10px;
 }
 
-.book_trip_container > .book_information1{
+.book_information1{
   font-weight: bold;
   margin: 0px 0px 15px 0px;
 }
-.book_trip_container > .book_information2{
+.book_information2{
   margin: 15px 0px 7px 0px;
 }
-.book_trip_container > .book_date_container{
+.book_date_container{
   display: flex;
   align-items: center;
 }
-.book_trip_container > .book_date_container > .book_date1{
+.book_date1{
   font-weight: bold;
   margin: 10px 0px 10px 0px;
 }
-.book_trip_container > .book_date_container > input{
+input{
   height: 35px;
+  padding-left: 10px;
 }
-.book_trip_container > .book_time_container{
+.book_time_container{
   display: flex;
   align-items: center;
 }
-.book_trip_container > .book_time_container > .book_time{
+.book_time{
   font-weight: bold;
   margin: 10px 0px 15px 0px;
 }
-.book_trip_container > .book_time_container > .circle1{
+.circle1 , .circle3{
   width: 22px;
   height: 22px;
   border-radius: 50%;
@@ -151,37 +152,20 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-.book_trip_container > .book_time_container > .circle3{
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+.circle1:hover , .circle3:hover{
+  cursor: pointer;
 }
- #circle2{
+#circle2 , #circle4{
   width: 18px;
   height: 18px;
   border-radius: 50%;
   background-color: #448899;
 }
- #circle4{
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #448899;
-}
-
-.book_trip_container > .book_money_container{
+.book_money_container{
   display: flex;
 }
-
-
-.book_trip_container > .book_money_container > .book_money{
+.book_money{
   font-weight: bold;
   margin: 0px 0px 25px 0px;
 }
@@ -193,6 +177,9 @@ body{
   font-size: 19px;
   border: 0;
   border-radius: 5px;
+}
+#book_button:hover{
+  cursor: pointer;
 }
 #hr_container{
   display: flex;
@@ -211,16 +198,16 @@ hr{
 .attraction_description{
   line-height: 23px;
 }
-.attraction_detail > .attraction_address_title{
+.attraction_address_title{
   font-weight: bold;
   margin-top: 20px;
 }
 
-.attraction_detail > .attraction_transport_title{
+.attraction_transport_title{
   font-weight: bold;
   margin-top: 20px;
 }
-.attraction_detail > #attraction_transport{
+#attraction_transport{
   margin-bottom: 110px;
   line-height: 23px;
 }
@@ -251,11 +238,11 @@ hr{
     width: 560px;
     border-radius: 5px;
   }
-  .attractions_container > .attraction_image{
+  .attraction_image{
     height: 406px;
     border-radius: 5px;
   }
-  .attraction_information_container > .attraction_name{
+  .attraction_name{
     margin: 90px 0px 15px 10px;
   }
   .attraction_detail_container{
@@ -285,11 +272,11 @@ hr{
     height: 270px;
     border-radius: 5px;
   }
-  .attractions_container > .attraction_image{
+  .attraction_image{
     height: 406px;
     border-radius: 5px;
   }
-  .attraction_information_container > .attraction_name{
+  .attraction_name{
     margin: 90px 0px 15px 10px;
   }
 
@@ -314,16 +301,15 @@ hr{
   .book_container{
     margin: 0;
   }
-  .attraction_information_container > .attraction_name{
+  .attraction_name{
     margin: 20px 0px 15px 10px;
   }
-  .attractions_container > .attraction_image{
+  .attraction_image{
     height: 350px;
     width: 100vw;
   }
-  .attractions_container > .attraction_image{
+  .attraction_image{
     background-position: 80%;
   }
-  
 }
 

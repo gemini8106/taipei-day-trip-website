@@ -55,9 +55,12 @@ body{
 .trip_list_title{
   font-weight: bold;
 }
-#delete{
+#trashcan{
   width: 30px;
   height: 30px;
+}
+#trashcan:hover{
+  cursor: pointer;
 }
 .trip_contact_container{
   width: 980px;
@@ -110,14 +113,18 @@ input{
   margin-top: 25px;
   margin-bottom: 62px;
 }
+#ensure_booking_button:hover{
+  cursor: pointer;
+}
 .hr_container{
   display: flex;  
   justify-content: center;
 }
 hr{
-  border: 0.5px #e8e8e8 solid;
+  border: none;
   width: 1200px;
-  justify-content: center;
+  height: 1px;
+  background-color: #e8e8e8;
   margin-top: 43px;
   margin-bottom: 43px;
 }
