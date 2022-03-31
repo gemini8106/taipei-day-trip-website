@@ -1,0 +1,315 @@
+body{
+  font-family: Noto Sans TC;
+  margin :auto 0;
+  color: #666666;  
+}
+/* #navbar_container{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  border-bottom: #E8E8E8 1px solid;
+}
+.navbar{
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+}
+.left{
+  font-weight: bold;
+  font-size: 30px;
+  width: 47%;
+  color: #448899;
+  margin: 10px;
+  
+}
+.right{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  text-align: end;
+  margin: 10px;
+  width: 53%;
+} */
+.outside_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.back_container{
+  width: 1200px;
+}
+.attractions_container {
+  padding-top: 94px;
+}
+.attraction_image{
+  background: no-repeat ;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.arrow_button_container{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+#arrow_button_left , #arrow_button_right{
+  width: 36px;
+  height: 36px;
+  opacity: 0.5;
+}
+#arrow_button_left:hover , #arrow_button_right:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.1s;
+}
+.image_dot_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+}
+.dot{
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px;
+}
+#black_dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
+.attraction_name{
+  margin: 20px 0px 15px 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.attraction_information{
+  margin: 0px 0px 15px 10px;
+}
+
+.book_trip_container{
+  padding: 20px;
+  background: #E8E8E8;
+  color: #666666;
+
+  margin: 10px;
+}
+.attraction_name{
+  margin: 20px 0px 15px 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.attraction_information{
+  margin: 0px 0px 15px 10px;
+}
+
+.book_information1{
+  font-weight: bold;
+  margin: 0px 0px 15px 0px;
+}
+.book_information2{
+  margin: 15px 0px 7px 0px;
+}
+.book_date_container{
+  display: flex;
+  align-items: center;
+}
+.book_date1{
+  font-weight: bold;
+  margin: 10px 0px 10px 0px;
+}
+input{
+  height: 35px;
+  padding-left: 10px;
+}
+.book_time_container{
+  display: flex;
+  align-items: center;
+}
+.book_time{
+  font-weight: bold;
+  margin: 10px 0px 15px 0px;
+}
+.circle1 , .circle3{
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle1:hover , .circle3:hover{
+  cursor: pointer;
+}
+#circle2 , #circle4{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #448899;
+}
+.book_money_container{
+  display: flex;
+}
+.book_money{
+  font-weight: bold;
+  margin: 0px 0px 25px 0px;
+}
+#book_button{
+  width: 154px;
+  height: 36px;
+  color: white;
+  background: #448899;
+  font-size: 19px;
+  border: 0;
+  border-radius: 5px;
+}
+#book_button:hover{
+  cursor: pointer;
+}
+#hr_container{
+  display: flex;
+  justify-content: center;
+}
+hr{
+  margin: 45px 0px 45px 0px;
+  background-color: #E8E8E8;
+  border: none;
+  height: 1px;
+  width: 1200px;
+}
+.attraction_detail{
+  margin: 0px 10px 0px 20px;
+}
+.attraction_description{
+  line-height: 23px;
+}
+.attraction_address_title{
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.attraction_transport_title{
+  font-weight: bold;
+  margin-top: 20px;
+}
+#attraction_transport{
+  margin-bottom: 110px;
+  line-height: 23px;
+}
+.footerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #757575;
+  color: white;
+  height: 104px;
+}
+
+@media(min-width: 1200.1px){
+  /* .left{
+    width: 80%;
+  }
+  .right{
+    width: 20%;
+  } */
+  .back_container{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+  .book_container{
+    margin-left: 30px;
+  }
+  .book_trip_container{
+    width: 560px;
+    border-radius: 5px;
+  }
+  .attraction_image{
+    height: 406px;
+    border-radius: 5px;
+  }
+  .attraction_name{
+    margin: 90px 0px 15px 10px;
+  }
+  .attraction_detail_container{
+    display: flex;
+    justify-content: center;
+  }
+  .attraction_detail{
+    width: 1200px;
+  }
+
+}
+@media(max-width: 1200px){
+  /* .left{
+    width: 70%;
+  }
+  .right{
+    width: 30%;
+  } */
+  .back_container{
+    display:grid ;
+    grid-template-columns: 1.3fr 0.7fr;
+  }  
+  .attractions_container {
+    padding-left: 10px;
+  }
+  .book_trip_container{
+    height: 270px;
+    border-radius: 5px;
+  }
+  .attraction_image{
+    height: 406px;
+    border-radius: 5px;
+  }
+  .attraction_name{
+    margin: 90px 0px 15px 10px;
+  }
+
+}
+@media(max-width: 900px){
+  /* .left{
+    width: 47%;
+  }
+  .right{
+    width: 53%;
+  } */
+  .back_container{
+    display: block;
+  }  
+  .attractions_container {
+    padding: 94px 0px 0px 0px;
+  }
+  .outside_book_container{
+    display: flex;
+    justify-content: center;
+  }
+  .book_container{
+    margin: 0;
+  }
+  .attraction_name{
+    margin: 20px 0px 15px 10px;
+  }
+  .attraction_image{
+    height: 350px;
+    width: 100vw;
+  }
+  .attraction_image{
+    background-position: 80%;
+  }
+}
+

@@ -1,0 +1,175 @@
+body{
+  font-family: Noto Sans TC;
+  margin :auto 0;
+  color: #666666; 
+}
+.trip{
+  display: flex;
+  justify-content: center;
+}
+.trip_information_container{
+  margin-top: 100px;
+  width: 1000px;
+}
+#no_booking{
+  margin-top: 35px;
+  margin-bottom: 40px;
+}
+#trip_information_slogan{
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+#no_booking{
+  display: none;
+}
+.trip_information{
+  margin-left: 10px;
+  margin-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr 9fr 0.5fr;
+}
+#attraction_image{
+  width: 266px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 22px;
+  border-radius: 5px;
+}
+.trip_detail{
+  font-size: 16px;
+}
+.trip_list_container{
+  display: flex;
+  margin-bottom: 20px;
+}
+#trip_list_container_address{
+  margin-bottom: 0;
+}
+#trip_attraction_name{
+  font-weight: bold;
+  color: #448899;
+  margin-top: 7px;
+  margin-bottom: 30px;
+}
+.trip_list_title{
+  font-weight: bold;
+}
+#trashcan{
+  width: 30px;
+  height: 30px;
+}
+#trashcan:hover{
+  cursor: pointer;
+}
+.trip_contact_container{
+  width: 980px;
+}
+.trip_contact_slogan{
+  margin-bottom: 24px;
+  font-size: 19px;
+  font-weight: bold;
+}
+input{
+  padding-left: 10px;
+  width: 200px;
+  height: 38px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+}
+#trip_contact_notice{
+  font-weight: bold;
+  margin-top: 5px;
+}
+.trip_creditcard_container{
+  width: 980px;
+}
+.trip_creditcard_slogan{
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+#valid_password{
+  margin: 0;
+}
+.trip_pay_container{
+  text-align: end;
+  width: 980px;
+}
+.total_money_container{
+  display: flex;
+  justify-content: end;
+  font-weight: bold;
+}
+#ensure_booking_button{
+  font-size: 19px;
+  width: 173px;
+  height: 36px;
+  background-color: #448899;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  margin-top: 25px;
+  margin-bottom: 62px;
+}
+#ensure_booking_button:hover{
+  cursor: pointer;
+}
+.hr_container{
+  display: flex;  
+  justify-content: center;
+}
+hr{
+  border: none;
+  width: 1200px;
+  height: 1px;
+  background-color: #e8e8e8;
+  margin-top: 43px;
+  margin-bottom: 43px;
+}
+@media(max-width: 1200px){
+  .trip{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media(max-width: 600px){
+  .trip{
+    display: block;
+  }
+  #attraction_image{
+    object-fit: cover;
+    height: 256px;
+    width: 100%;
+    margin: auto;
+  }
+  .trip_information_container{
+    width: auto;
+  }
+  .trip_information{
+    display: block;
+    margin: auto;
+  }
+  .delete_container{
+    width: 100%;
+    text-align: end;
+  }
+  .trip_contact_container{
+    width: auto;
+  }
+  .trip_creditcard_container{
+    width: auto;
+  }
+  .trip_pay_container{
+    width: auto;
+  }
+  
+}
+
+
+
+
+
+
+

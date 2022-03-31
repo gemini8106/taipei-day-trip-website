@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>booking</title>
+    <link rel="stylesheet" type="text/css" href= "../static/css/share.css" />
+    <link rel="stylesheet" type="text/css" href= "../static/css/booking.css" />
+</head>
+<body>
+  <div class = "wrapper">
+    <!--navbar-->
+    {% include "/share-html/navbar.html" %}
+    <div class = "trip">
+      <div class = "trip_information_container">
+        <div id = "trip_information_slogan"></div>
+        <div id = "no_booking">目前沒有待預定的行程</div>
+        <div class = "trip_information">
+          <img id = "attraction_image" ></img>
+          <div class = "trip_detail">
+            <div class = "trip_list_container" id = "trip_attraction_name">
+              <div >台北一日遊：</div>
+              <div id = "attraction_name"></div>
+            </div>
+            <div class = "trip_list_container">
+              <div class = "trip_list_title">日期：</div>
+              <div id = "trip_date"></div>
+            </div>
+            <div class = "trip_list_container">
+              <div class = "trip_list_title">時間：</div>
+              <div id = "trip_time"></div>       
+            </div>
+            <div class = "trip_list_container">
+              <div class = "trip_list_title">費用：</div>
+              <div id = "trip_money"></div>        
+            </div>
+            <div class = "trip_list_container" id = "trip_list_container_address">
+              <div class = "trip_list_title">地點：</div>
+              <div id = "attraction_address"></div>
+            </div>
+          </div>
+          <div class = "delete_container">
+            <img id = "trashcan" src = "../static/images/icon_delete.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class = "hr_container">
+      <hr>
+    </div>
+    <div class = "trip">
+      <div class = "trip_contact_container">
+        <div class = "trip_contact_slogan">您的聯絡資訊</div>
+        <div>聯絡姓名：    <input type = "text" id = "contact_name"></input></div>
+        <div>聯絡信箱：    <input type = "text" id = "contact_email"></input></div>
+        <div>手機號碼：    <input type = "text"></input></div>
+        <div id = "trip_contact_notice">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式</div>
+      </div>
+    </div>
+    <div class = "hr_container">
+      <hr>
+    </div>
+    <div class = "trip">
+      <div class = "trip_creditcard_container">
+        <div class = "trip_creditcard_slogan">信用卡付款資訊</div>
+        <div>卡片號碼：    <input type = "text" placeholder = "**** **** **** ****"></input></div>
+        <div>過期時間：    <input type = "text" placeholder = "MM/YY"></input></div>
+        <div>驗證密碼：    <input type = "text" id = "valid_password" placeholder = "CVV"></input></div>
+      </div>
+    </div>
+    <div class = "hr_container">
+      <hr>
+    </div>
+    <div class = "trip">
+      <div class = "trip_pay_container">
+        <div class = "total_money_container">
+          <div>總價：</div>
+          <div id = "total_money"></div>
+        </div>
+        <button id = "ensure_booking_button">確認訂購並付款</button>
+      </div>
+    </div>
+    
+
+
+
+
+    <!--會員登入/註冊框-->
+    {% include "/share-html/member.html" %}
+    <!--footer-->
+    {% include "share-html/footer.html" %}
+  </div>
+
+  <script src= "../static/js/member.js"  type= "text/javascript"></script>
+  <script src= "../static/js/booking.js"  type= "text/javascript"></script>
+</body>
+
+</html>
