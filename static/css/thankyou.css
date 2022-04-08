@@ -1,0 +1,36 @@
+body{
+  font-family: Noto Sans TC;
+  margin: auto 0;
+  color: #666666;  
+}
+#order_container{
+  width: 100%;
+  text-align: center;
+  padding-top: 100px;
+}
+#order_slogan{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.order_note{
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+#order_success{
+  color: #6ab7ca;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+#order_fail{
+  color: rgba(255, 0, 0, 0.598);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.order_number{
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.order_notice{
+  font-weight: 500;
+}

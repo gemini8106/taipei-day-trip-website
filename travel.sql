@@ -63,7 +63,7 @@ CREATE TABLE `booking` (
   `time` varchar(255) DEFAULT NULL,
   `price` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,6 +100,41 @@ LOCK TABLES `member` WRITE;
 INSERT INTO `member` VALUES (1,'pp','pp@hotmail.com','pp'),(2,'jj','jj@hotmail.com','jj'),(3,'kk','kk@hotmail.com','kk'),(4,'gg','gg@hotmail.com','gg'),(5,'hello','hello@hotmail.com','hello'),(6,'usa','usa@hotmail.com','usa'),(7,'mm','mm@hotmail.com','mm'),(8,'m','m','m'),(9,'bb','bb@hotmail.com','bb'),(10,'nn','nn@hotmail.com','nn'),(11,'cc','cc@hotmail.com','cc'),(12,'ff','ff@hotmail.com','ff'),(13,'ll','ll@hotmail.com','ll');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `order_list`
+--
+
+DROP TABLE IF EXISTS `order_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_list` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(255) DEFAULT NULL,
+  `price` int DEFAULT NULL,
+  `attraction_id` int DEFAULT NULL,
+  `attraction_name` text,
+  `attraction_address` text,
+  `attraction_image` text,
+  `date` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `contact_name` varchar(255) DEFAULT NULL,
+  `contact_email` varchar(255) DEFAULT NULL,
+  `contact_phone` varchar(255) DEFAULT NULL,
+  `status` int DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_list`
+--
+
+LOCK TABLES `order_list` WRITE;
+/*!40000 ALTER TABLE `order_list` DISABLE KEYS */;
+INSERT INTO `order_list` VALUES (24,'2022040812020037139',2000,1,'新北投溫泉區','臺北市  北投區中山路、光明路沿線','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg','2022-04-09','上午9點到下午4點','jj','jj@hotmail.com','0000000000',1),(25,'2022040812024035908',2500,6,'陽明山溫泉區','臺北市  北投區竹子湖路1之20號','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000985.jpg','2022-04-09','中午12點到晚上7點','jj','jj@hotmail.com','0000000000',0),(26,'2022040812181190479',2000,1,'新北投溫泉區','臺北市  北投區中山路、光明路沿線','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg','2022-04-15','上午9點到下午4點','jj','jj@hotmail.com','099999999',1),(27,'2022040812192081262',2500,2,'大稻埕碼頭','臺北市  大同區環河北路一段','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000340.jpg','2022-04-15','中午12點到晚上7點','jj','jj@hotmail.com','0999999999',0),(28,'2022040812200236225',2500,3,'士林官邸','臺北市  士林區福林路60號','https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C0/D7/E150/F719/71eb4b56-f771-43bc-856c-2fb265a5cc6e.jpg','2022-04-09','中午12點到晚上7點','jj','jj@hotmail.com','0999999999',0),(29,'2022040812290994094',2500,1,'新北投溫泉區','臺北市  北投區中山路、光明路沿線','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg','2022-04-09','中午12點到晚上7點','gg','gg@hotmail.com','000000000',0),(30,'2022040812342932414',2500,8,'大安森林公園','臺北市  大安區新生南路以東、信義路3段以南','https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C0/D11/E257/F345/546f42a1-cbfb-49fc-b4d8-c33f1c44190c.jpg','2022-04-16','中午12點到晚上7點','gg','gg@hotmail.com','0000000000',0),(31,'2022040812380809255',2500,14,'中正紀念堂','臺北市  中正區中山南路21號','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000375.jpg','2022-04-15','中午12點到晚上7點','jj','jj@hotmail.com','0000000000',0),(32,'2022040812471191404',2000,8,'大安森林公園','臺北市  大安區新生南路以東、信義路3段以南','https://www.travel.taipei/d_upload_ttn/sceneadmin/image/A0/B0/C0/D11/E257/F345/546f42a1-cbfb-49fc-b4d8-c33f1c44190c.jpg','2022-04-06','上午9點到下午4點','jj','jj@hotmail.com','0000000000',0),(33,'2022040813002669351',2000,1,'新北投溫泉區','臺北市  北投區中山路、光明路沿線','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg','2022-04-15','上午9點到下午4點','jj','jj@hotmail.com','0000000000',0),(34,'2022040813062229682',2500,2,'大稻埕碼頭','臺北市  大同區環河北路一段','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000340.jpg','2022-04-06','中午12點到晚上7點','jj','jj@hotmail.com','0000000000',0),(35,'2022040813151123021',2500,2,'大稻埕碼頭','臺北市  大同區環河北路一段','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000340.jpg','2022-04-29','中午12點到晚上7點','jj','jj@hotmail.com','09090909090',0),(36,'2022040813192899172',2500,10,'南港山系-象山親山步道','臺北市  信義區信義路五段150巷','https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11001481.jpg','2022-04-14','中午12點到晚上7點','jj','jj@hotmail.com','0000000000',0);
+/*!40000 ALTER TABLE `order_list` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -110,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-30 11:06:25
+-- Dump completed on 2022-04-08 13:24:28

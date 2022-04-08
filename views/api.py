@@ -1,8 +1,9 @@
-from operator import truediv
+from urllib import response
 from flask import *
 app_api= Blueprint("app_api", __name__)
 from views.database import connection_pool
-
+import time
+import requests
 
 
 
@@ -243,7 +244,6 @@ def new_booking() :
 
 @app_api.route("/api/booking" , methods = ["GET"])
 def booking() :
-  
   if "email" not in session:
     return make_response(jsonify({"error" : True
                                   ,"message" : "使用者未登入"}), 403)
@@ -292,4 +292,139 @@ def delete() :
     cursor.close()
     booking_db.close()
     return make_response(jsonify({"ok" : True}))
+  
+  
+#unique order number
+def get_order_code():
+  order_umber = str(time.strftime('%Y%m%d%H%M%S' , time.localtime(time.time())) + str(time.time()).replace('.' , '')[-5:])
+  return order_umber
+
+
+  
+
+@app_api.route("/api/orders" , methods = ["POST"])
+def orders() :
+  order_data = request.get_json()
+  order_number = get_order_code()
+  prime = order_data["prime"]
+  price = order_data["order"]["price"]
+  attraction_id = order_data["order"]["trip"]["attraction"]["id"]
+  attraction_name = order_data["order"]["trip"]["attraction"]["name"]
+  attraction_address = order_data["order"]["trip"]["attraction"]["address"]
+  attraction_image = order_data["order"]["trip"]["attraction"]["image"]
+  date = order_data["order"]["trip"]["date"]
+  time = order_data["order"]["trip"]["time"]
+  contact_name = order_data["order"]["contact"]["name"]
+  contact_email = order_data["order"]["contact"]["email"]
+  contact_phone = order_data["order"]["contact"]["phone"]
+  order_db = connection_pool.get_connection()
+  cursor = order_db.cursor()
+  cursor.execute("INSERT INTO order_list(order_number , price , attraction_id , attraction_name , attraction_address , attraction_image , date , time , contact_name , contact_email , contact_phone) VALUES(%s , %s , %s , %s , %s , %s , %s , %s , %s , %s , %s)",(order_number , price , attraction_id , attraction_name , attraction_address , attraction_image , date , time , contact_name , contact_email , contact_phone))
+  order_db.commit()
+  cursor.close()
+  order_db.close()
+  header = {"Content-Type": "application/json",
+             "x-api-key" : "partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM"}
+  pay_data =  {"prime" : prime,
+              "partner_key" : "partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM",
+              "merchant_id" : "GlobalTesting_CTBC",
+              "amount" : price,
+              "details" : "taipei-day-trip",
+              "cardholder" : {
+                "phone_number" : contact_phone,
+                "name" : contact_name,
+                "email" : contact_email,
+              }}
+  if "email" not in session:
+    return make_response(jsonify({"error" : True
+                                ,"message" : "使用者未登入"}), 403)
+  else:
+    if prime:
+      response = requests.post("https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime",
+      headers = header,
+      json = pay_data
+      )
+      print(response.json())
+      if response.json()["status"] == 0 :
+        order_db = connection_pool.get_connection()
+        cursor = order_db.cursor()
+        cursor.execute("UPDATE order_list SET status = 0 WHERE order_number = %s" , (order_number , ))
+        order_db.commit()
+        cursor.close()
+        order_db.close()
+        return make_response(jsonify({
+          "data" : {
+            "number" : order_number,
+            "payment" : {
+              "status" : 0,
+              "message" : "付款成功"
+            }
+          }}),200)
+      else :
+        return make_response(jsonify({
+          "data" : {
+            "number" : order_number,
+            "payment" : {
+              "status" : 1,
+              "message" : "付款失敗"
+            }
+          }}),200)
+    elif not prime : 
+      return make_response(jsonify({"error" : True
+                                  ,"message" : "未取得prime"}), 400)
+    else : 
+      return make_response(jsonify({"error" : True
+                                  ,"message" : "伺服器內部錯誤"}), 500)
+
+
+@app_api.route("/api/order/<order_number>")
+def order(order_number) :
+  if "email" not in session:
+    return make_response(jsonify({"error" : True
+                                ,"message" : "使用者未登入"}), 403)
+  else :
+    order_db = connection_pool.get_connection()
+    cursor = order_db.cursor()
+    cursor.execute("SELECT * FROM order_list WHERE order_number = %s AND contact_email = %s" , (order_number , session["email"]))
+    order = cursor.fetchone()
+    cursor.close()
+    order_db.close()
+    if not order:
+      return make_response(jsonify({
+        "data" : None
+      }),200)
+    else :
+      return make_response(jsonify({
+        "data" : {
+          "number" : order[1],
+          "price" : order[2],
+          "trip" : {
+            "attraction" : {
+              "id" : order[3],
+              "name" : order[4],
+              "address" : order[5],
+              "image" : order[6],
+            },
+            "date" : order[7],
+            "time" : order[8],
+          },
+          "contact" : {
+            "name" : order[9],
+            "email" : order[10],
+            "phone" : order[11],
+          },
+          "status" : order[12]
+      }}),200)
+      
+
+  
+    
+
+      
+      
+      
+    
+  
+  
+
  

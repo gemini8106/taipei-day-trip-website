@@ -90,7 +90,21 @@ input{
   font-weight: bold;
   margin-bottom: 24px;
 }
-#valid_password{
+.contact_information_container{
+  display: flex;
+}
+.contact_info{
+  padding-top: 8px;
+}
+.tpfield {
+  padding-left: 10px;
+  width: 200px;
+  height: 40px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+}
+#card_ccv{
   margin: 0;
 }
 .trip_pay_container{
