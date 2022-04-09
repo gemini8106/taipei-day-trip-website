@@ -6,7 +6,6 @@ let closeButtonSignup = document.getElementsByClassName("close_button")[1];
 let signinBox = document.getElementById("signin_box");
 let signupBox = document.getElementById("signup_box");
 let bookTripButton = document.getElementById("webFunction_book");
-
 let userData;
 
 function resetValue(){
